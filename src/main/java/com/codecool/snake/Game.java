@@ -11,6 +11,8 @@ import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
+import java.util.Random;
+
 
 public class Game extends Pane {
     private Snake snake = null;
@@ -28,7 +30,7 @@ public class Game extends Pane {
     public void init() {
         spawnSnake();
         spawnEnemies(4);
-        spawnPowerUps(4);
+        spawnPowerUps(2);
 
         GameLoop gameLoop = new GameLoop(snake);
         Globals.getInstance().setGameLoop(gameLoop);
@@ -56,6 +58,7 @@ public class Game extends Pane {
             new HurryPowerUp();
         }
     }
+
 
 
 

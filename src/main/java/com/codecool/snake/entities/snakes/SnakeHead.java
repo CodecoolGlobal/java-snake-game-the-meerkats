@@ -55,7 +55,7 @@ public class SnakeHead extends GameEntity implements Interactable {
         }
         if(entity instanceof HurryPowerUp){
             System.out.println(getMessage());
-            snake.moveFaster((float) 0.2);
+            snake.moveFaster((float) 0.1);
         }
 
     }
