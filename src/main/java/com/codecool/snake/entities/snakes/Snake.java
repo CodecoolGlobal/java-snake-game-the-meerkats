@@ -13,6 +13,7 @@ import javafx.scene.input.KeyCode;
 public class Snake implements Animatable {
 
     private static float speed = 2;
+    private int stepCounter=0;
     private static int health = 100;
 
 
@@ -28,14 +29,22 @@ public class Snake implements Animatable {
         addPart(4);
     }
 
+
+    public SnakeHead getHead(){
+        return head;
+    }
+
+
     public void step() {
         SnakeControl turnDir = getUserInput();
-        head.updateRotation(turnDir, getSpeed());
+        head.updateRotation(turnDir, getSpeed(),stepCounter);
+
 
         updateSnakeBodyHistory();
         checkForGameOverConditions();
 
         body.doPendingModifications();
+        stepCounter++;
     }
 
     public static float getSpeed() {
@@ -90,5 +99,4 @@ public class Snake implements Animatable {
         if(result != null) return result;
         return head;
     }
-
 }

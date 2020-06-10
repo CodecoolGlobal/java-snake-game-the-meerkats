@@ -6,6 +6,7 @@ import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 
+import com.codecool.snake.entities.snakes.Amo;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.entities.snakes.SnakeBody;
 import com.codecool.snake.entities.snakes.SnakeHead;
@@ -44,6 +45,10 @@ public class Lion extends Enemy implements Interactable, Animatable {
     @Override
     public void apply(GameEntity entity) {
         if(entity instanceof SnakeBody || entity instanceof SnakeHead) {
+            System.out.println(getMessage());
+            destroy();
+        }
+        if(entity instanceof Amo) {
             System.out.println(getMessage());
             destroy();
         }
