@@ -11,8 +11,11 @@ import javafx.scene.input.KeyCode;
 
 
 public class Snake implements Animatable {
+
     private static float speed = 2;
-    private int health = 100;
+    private static int health = 100;
+
+
 
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
@@ -61,7 +64,7 @@ public class Snake implements Animatable {
         Globals.getInstance().display.updateSnakeHeadDrawPosition(head);
     }
 
-    public void changeHealth(int diff) {
+    public static void changeHealth(int diff) {
         health += diff;
     }
 
@@ -69,6 +72,7 @@ public class Snake implements Animatable {
         if (head.isOutOfBounds() || health <= 0) {
             System.out.println("Game Over");
             Globals.getInstance().stopGame();
+            Globals.getInstance().display.showGameOverScreen(body.getList().size());
         }
     }
 
@@ -86,4 +90,5 @@ public class Snake implements Animatable {
         if(result != null) return result;
         return head;
     }
+
 }
