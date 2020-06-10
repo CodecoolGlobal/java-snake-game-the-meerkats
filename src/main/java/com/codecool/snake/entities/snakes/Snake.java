@@ -25,6 +25,12 @@ public class Snake implements Animatable {
         addPart(4);
     }
 
+
+    public SnakeHead getHead(){
+        return head;
+    }
+
+
     public void step() {
         SnakeControl turnDir = getUserInput();
         head.updateRotation(turnDir, getSpeed());
@@ -49,6 +55,11 @@ public class Snake implements Animatable {
         if(InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
         return turnDir;
     }
+
+    private SnakeControl shooting(){
+        return SnakeControl.SHOOT;
+    }
+
 
     public void addPart(int numParts) {
         GameEntity parent = getLastPart();

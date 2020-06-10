@@ -9,7 +9,9 @@ import com.codecool.snake.entities.powerups.HurryPowerUp;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 
 import com.codecool.snake.entities.powerups.SmallPowerUp;
+import com.codecool.snake.eventhandler.InputHandler;
 import javafx.geometry.Point2D;
+import javafx.scene.input.KeyCode;
 
 
 public class SnakeHead extends GameEntity implements Interactable {
@@ -22,6 +24,12 @@ public class SnakeHead extends GameEntity implements Interactable {
         setPosition(position);
     }
 
+    public void attack(){
+        if(InputHandler.getInstance().isKeyPressed(KeyCode.SPACE)){
+            new Amo(this.getPosition(),snake);
+        }
+    }
+
     public void updateRotation(SnakeControl turnDirection, float speed) {
         double headRotation = getRotate();
 
@@ -30,6 +38,9 @@ public class SnakeHead extends GameEntity implements Interactable {
         }
         if (turnDirection.equals(SnakeControl.TURN_RIGHT)) {
             headRotation = headRotation + turnRate;
+        }
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.SPACE)) {
+            attack();
         }
 
         // set rotation and position

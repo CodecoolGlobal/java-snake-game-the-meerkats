@@ -5,6 +5,7 @@ import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.HurryPowerUp;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.powerups.SmallPowerUp;
+import com.codecool.snake.entities.snakes.Amo;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
@@ -47,6 +48,10 @@ public class Game extends Pane {
     private void spawnSnake() {
         snake = new Snake(new Point2D(500, 500));
     }
+
+//    private  void spawnMuci(){
+//        Amo muci =new Amo(new Point2D(300,300));
+//    }
 
     private void spawnEnemies(int numberOfEnemies) {
         for(int i = 0; i < numberOfEnemies; ++i) new SimpleEnemy();
