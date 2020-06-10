@@ -7,6 +7,7 @@ import com.codecool.snake.eventhandler.InputHandler;
 
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
 
@@ -27,11 +28,24 @@ public class Game extends Pane {
         spawnSnake();
         spawnEnemies(4);
         spawnPowerUps(4);
+        gameRestart();
+
 
         GameLoop gameLoop = new GameLoop(snake);
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
         gameTimer.play();
+    }
+
+    private void gameRestart() {
+        Button restartB = new Button("Restart");
+        restartB.setLayoutX(0);
+        restartB.setLayoutY(0);
+        this.getChildren().add(restartB);
+
+//        Globals.getInstance().display.clear();
+//        Globals.getInstance().game.init();
+//        Globals.getInstance().startGame();
     }
 
     public void start() {
