@@ -10,50 +10,44 @@ import javafx.geometry.Point2D;
 import java.util.Random;
 
 public abstract class Enemy extends GameEntity implements Animatable, Interactable {
+    public static Random rnd=new Random();
     private final int damage;
     private Point2D heading;
-    public static Random rnd = new Random();
     private double direction;
-    private int speed;
+    private double speed;
 
     public Enemy(int damage) {
-        this.damage = damage;
+        this.damage=damage;
         setEnemyPosition();
     }
 
-    public Point2D getHeading(Point2D heading) {
-        return this.heading;
-    }
-
-    private void setHeading(Point2D heading) {
-        this.heading = heading;
+    public void updateDirection() {
     }
 
     public int getDamage() {
         return this.damage;
     }
 
-    public int getSpeed() {
-        return this.speed;
-    }
 
     public double getDirection() {
         return direction;
     }
 
-    protected void setEnemyPosition() {
+
+    public void setEnemyPosition() {
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
     }
 
-    public void setFinalHeading(double direction, int speed) {
-        this.direction = direction;
-        this.speed = speed;
-        this.heading =Utils.directionToVector(direction, speed);
+    public void setInitialHeading(double direction, double speed) {
+        this.direction=direction;
+        this.speed=speed;
+        this.heading=Utils.directionToVector(direction, speed);
     }
 
 
     public void step() {
+        updateDirection();
         if (isOutOfBounds()) {
             destroy();
         }

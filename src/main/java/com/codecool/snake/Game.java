@@ -20,13 +20,13 @@ import java.util.Random;
 
 
 public class Game extends Pane {
-    private Snake snake = null;
-    private GameTimer gameTimer = new GameTimer();
+    private Snake snake=null;
+    private GameTimer gameTimer=new GameTimer();
 
 
     public Game() {
-        Globals.getInstance().game = this;
-        Globals.getInstance().display = new Display(this);
+        Globals.getInstance().game=this;
+        Globals.getInstance().display=new Display(this);
         Globals.getInstance().setupResources();
 
         init();
@@ -39,14 +39,14 @@ public class Game extends Pane {
         spawnPowerUps(4);
         gameRestart();
 
-        GameLoop gameLoop = new GameLoop(snake);
+        GameLoop gameLoop=new GameLoop(snake);
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
         gameTimer.play();
     }
 
     private void gameRestart() {
-        Button restartB = new Button("Restart");
+        Button restartB=new Button("Restart");
         restartB.setLayoutX(5);
         restartB.setLayoutY(2);
         restartB.requestFocus();
@@ -60,7 +60,7 @@ public class Game extends Pane {
 
     }
 
-    public void restart(){
+    public void restart() {
         Globals.getInstance().stopGame();
         Globals.getInstance().display.clear();
         init();
@@ -74,17 +74,17 @@ public class Game extends Pane {
     }
 
     private void spawnSnake() {
-        snake = new Snake(new Point2D(500, 500));
+        snake=new Snake(new Point2D(500, 500));
     }
 
     private void spawnEnemies(int numberOfEnemies) {
-        for(int i = 0; i < numberOfEnemies; ++i) new SimpleEnemy();
-        for(int i = 0; i < numberOfEnemies/4; ++i) new Lion();
-        for(int i = 0; i < numberOfEnemies; ++i) new Eagle();
+        for (int i=0; i < numberOfEnemies; ++i) new SimpleEnemy();
+        for (int i=0; i < numberOfEnemies / 4; ++i) new Lion();
+        for (int i=0; i < numberOfEnemies; ++i) new Eagle();
     }
 
     private void spawnPowerUps(int numberOfPowerUps) {
-        for(int i = 0; i < numberOfPowerUps; ++i){
+        for (int i=0; i < numberOfPowerUps; ++i) {
             new SimplePowerUp();
             new SmallPowerUp();
             new HurryPowerUp();
@@ -92,10 +92,8 @@ public class Game extends Pane {
     }
 
 
-
-
     private void setupInputHandling() {
-        Scene scene = getScene();
+        Scene scene=getScene();
         scene.setOnKeyPressed(event -> InputHandler.getInstance().setKeyPressed(event.getCode()));
         scene.setOnKeyReleased(event -> InputHandler.getInstance().setKeyReleased(event.getCode()));
     }
