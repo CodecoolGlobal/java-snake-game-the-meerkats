@@ -64,6 +64,7 @@ public class Game extends Pane {
     }
 
     public void restart(){
+        snakes.clear();
         Globals.getInstance().stopGame();
         Globals.getInstance().display.clear();
         init();
@@ -77,9 +78,9 @@ public class Game extends Pane {
     }
 
     private void spawnSnake() {
-        for (int i = 1; i <= 2 ; i++) {
-           snakes.add(new Snake(new Point2D(500  , 600), i ));
-        }
+        snakes.add(new Snake(new Point2D(500  , 600), 1 ));
+        snakes.add(new Snake(new Point2D(500  , 400), 2 ));
+
     }
 
     private void spawnEnemies(int numberOfEnemies) {
