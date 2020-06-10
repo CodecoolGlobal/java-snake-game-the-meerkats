@@ -10,7 +10,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
 
@@ -56,6 +55,7 @@ public class Game extends Pane {
     }
 
     public void restart(){
+        Globals.getInstance().stopGame();
         Globals.getInstance().display.clear();
         init();
         start();
@@ -65,6 +65,10 @@ public class Game extends Pane {
         requestFocus();
         setupInputHandling();
         Globals.getInstance().startGame();
+    }
+
+    public void gameOver() {
+
     }
 
     private void spawnSnake() {
