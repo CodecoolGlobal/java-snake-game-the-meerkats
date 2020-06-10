@@ -64,6 +64,8 @@ public class Display {
         length.setFont(Font.font("Chilanka", 25));
         length.setAlignment(Pos.CENTER);
         length.relocate(0, height / 2 + 30);
+
+        //restart button for game over
         Button restart = new Button("Restart");
         getRestartButton(restart);
 
