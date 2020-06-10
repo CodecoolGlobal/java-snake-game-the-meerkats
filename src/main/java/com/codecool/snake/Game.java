@@ -9,6 +9,7 @@ import com.codecool.snake.entities.powerups.SmallPowerUp;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
+import com.sun.javafx.geom.Vec2d;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
@@ -16,11 +17,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
 public class Game extends Pane {
-    private Snake snake = null;
+    private List<Snake> snakes = new ArrayList<>();
     private GameTimer gameTimer = new GameTimer();
 
 
@@ -39,7 +42,7 @@ public class Game extends Pane {
         spawnPowerUps(4);
         gameRestart();
 
-        GameLoop gameLoop = new GameLoop(snake);
+        GameLoop gameLoop = new GameLoop(snakes);
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
         gameTimer.play();
@@ -74,7 +77,9 @@ public class Game extends Pane {
     }
 
     private void spawnSnake() {
-        snake = new Snake(new Point2D(500, 500));
+        for (int i = 1; i <= 2 ; i++) {
+           snakes.add(new Snake(new Point2D(500  , 600), i ));
+        }
     }
 
     private void spawnEnemies(int numberOfEnemies) {

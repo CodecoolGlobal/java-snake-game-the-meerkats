@@ -14,6 +14,7 @@ public class Snake implements Animatable {
 
     private static float speed = 2;
     private static int health = 100;
+    private int snakeNo;
 
 
 
@@ -21,9 +22,10 @@ public class Snake implements Animatable {
     private DelayedModificationList<GameEntity> body;
 
 
-    public Snake(Point2D position) {
+    public Snake(Point2D position , int snakeNo) {
         head = new SnakeHead(this, position);
         body = new DelayedModificationList<>();
+        this.snakeNo = snakeNo;
 
         addPart(4);
     }
@@ -48,9 +50,16 @@ public class Snake implements Animatable {
 
     private SnakeControl getUserInput() {
         SnakeControl turnDir = SnakeControl.INVALID;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
+        if (snakeNo == 1) {
+            if (InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
+            if (InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
+        }
+        if (snakeNo == 2) {
+            if (InputHandler.getInstance().isKeyPressed(KeyCode.A)) turnDir = SnakeControl.TURN_LEFT;
+            if (InputHandler.getInstance().isKeyPressed(KeyCode.D)) turnDir = SnakeControl.TURN_RIGHT;
+        }
         return turnDir;
+
     }
 
     public void addPart(int numParts) {

@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.Random;
 
 public class GameLoop {
-    private Snake snake;
+    private List<Snake> snakes;
     private boolean running = false;
 
-    public GameLoop(Snake snake) { this.snake = snake; }
+    public GameLoop(List<Snake> snakes) { this.snakes = snakes; }
 
     public void start() {
         running = true;
@@ -29,7 +29,9 @@ public class GameLoop {
 
     public void step() {
         if(running) {
-            snake.step();
+            for(Snake snake : snakes) {
+                snake.step();
+            }
             for (GameEntity gameObject : Globals.getInstance().display.getObjectList()) {
                 if (gameObject instanceof Animatable) {
                     ((Animatable) gameObject).step();
