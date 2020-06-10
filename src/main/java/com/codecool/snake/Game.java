@@ -9,9 +9,12 @@ import com.codecool.snake.entities.powerups.SmallPowerUp;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.Button;
+import javafx.scene.layout.*;
 
 import java.util.Random;
 
@@ -32,7 +35,9 @@ public class Game extends Pane {
     public void init() {
         spawnSnake();
         spawnEnemies(4);
-        spawnPowerUps(2);
+
+        spawnPowerUps(4);
+        gameRestart();
 
         GameLoop gameLoop = new GameLoop(snake);
         Globals.getInstance().setGameLoop(gameLoop);
@@ -40,9 +45,36 @@ public class Game extends Pane {
         gameTimer.play();
     }
 
+    private void gameRestart() {
+        Button restartB = new Button("Restart");
+        restartB.setLayoutX(5);
+        restartB.setLayoutY(2);
+        restartB.requestFocus();
+        this.getChildren().add(restartB);
+        restartB.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                restart();
+            }
+        });
+
+    }
+
+    public void restart(){
+        Globals.getInstance().stopGame();
+        Globals.getInstance().display.clear();
+        init();
+        start();
+    }
+
     public void start() {
+        requestFocus();
         setupInputHandling();
         Globals.getInstance().startGame();
+    }
+
+    public void gameOver() {
+
     }
 
     private void spawnSnake() {
