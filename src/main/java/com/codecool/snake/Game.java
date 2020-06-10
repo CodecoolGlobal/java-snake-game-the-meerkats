@@ -8,8 +8,10 @@ import com.codecool.snake.entities.powerups.SmallPowerUp;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
+import javafx.event.ActionEvent;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
 import java.util.Random;
@@ -32,11 +34,19 @@ public class Game extends Pane {
         spawnSnake();
         spawnEnemies(4);
         spawnPowerUps(2);
+        spawnRestartButton();
 
         GameLoop gameLoop = new GameLoop(snake);
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
         gameTimer.play();
+    }
+
+    private void spawnRestartButton() {
+        Button restart = new Button("Restart");
+        restart.setLayoutX(920);
+        restart.setLayoutY(10);
+        this.getChildren().add(restart);
     }
 
     public void start() {
