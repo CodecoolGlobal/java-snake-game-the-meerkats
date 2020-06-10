@@ -5,10 +5,13 @@ import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 
 
 public class Game extends Pane {
@@ -39,16 +42,27 @@ public class Game extends Pane {
 
     private void gameRestart() {
         Button restartB = new Button("Restart");
-        restartB.setLayoutX(0);
-        restartB.setLayoutY(0);
+        restartB.setLayoutX(5);
+        restartB.setLayoutY(2);
+        restartB.requestFocus();
         this.getChildren().add(restartB);
+        restartB.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                restart();
+            }
+        });
 
-//        Globals.getInstance().display.clear();
-//        Globals.getInstance().game.init();
-//        Globals.getInstance().startGame();
+    }
+
+    public void restart(){
+        Globals.getInstance().display.clear();
+        init();
+        start();
     }
 
     public void start() {
+        requestFocus();
         setupInputHandling();
         Globals.getInstance().startGame();
     }
