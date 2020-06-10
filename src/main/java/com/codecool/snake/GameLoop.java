@@ -3,9 +3,13 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.powerups.HurryPowerUp;
+import com.codecool.snake.entities.powerups.SimplePowerUp;
+import com.codecool.snake.entities.powerups.SmallPowerUp;
 import com.codecool.snake.entities.snakes.Snake;
 
 import java.util.List;
+import java.util.Random;
 
 public class GameLoop {
     private Snake snake;
@@ -35,8 +39,17 @@ public class GameLoop {
         Globals.getInstance().display.frameFinished();
     }
 
+    private static void randomSpawnPowerUps(){
+        Random r = new Random();
+        int power = r.nextInt(600)+1;
+        if(power==1) new SimplePowerUp();
+        else if(power==2) new SmallPowerUp();
+        else if(power==3) new HurryPowerUp();
+    }
+
     private void checkCollisions() {
         List<GameEntity> gameObjs = Globals.getInstance().display.getObjectList();
+        randomSpawnPowerUps();
         for (int idxToCheck = 0; idxToCheck < gameObjs.size(); ++idxToCheck) {
             GameEntity objToCheck = gameObjs.get(idxToCheck);
             if (objToCheck instanceof Interactable) {
