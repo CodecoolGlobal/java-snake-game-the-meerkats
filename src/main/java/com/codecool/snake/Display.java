@@ -58,23 +58,24 @@ public class Display {
         gameOver.setFont(Font.font("Chilanka", FontWeight.BOLD,45));
         gameOver.setTextFill(Color.web("#8b0000"));
         gameOver.setAlignment(Pos.CENTER);
-        gameOver.relocate(0,height / 2 - 30);
+        gameOver.relocate(0,height / 2 - 100);
+
         Label length = new Label("Your snake's length: " + snakeLength);
         length.setMinWidth(width);
         length.setFont(Font.font("Chilanka", 25));
         length.setAlignment(Pos.CENTER);
-        length.relocate(0, height / 2 + 30);
+        length.relocate(0, height / 2 );
 
         Label length2 = new Label("Your second snake's length: " + secondSnakeLength);
         length2.setMinWidth(width);
         length2.setFont(Font.font("Chilanka", 25));
         length2.setAlignment(Pos.CENTER);
-        length2.relocate(0, height / 2 + 80);
+        length2.relocate(0, height / 2 + 30);
 
         //restart button for game over
         Button restart = new Button("Restart");
-        restart.setLayoutX(0);
-        restart.setLayoutY (height/2 + 130);
+        restart.setAlignment(Pos.CENTER);
+        restart.relocate(0, height / 2 + 100);
         getRestartButton(restart);
 
         clear();
