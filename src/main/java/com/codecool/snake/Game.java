@@ -49,7 +49,7 @@ public class Game extends Pane {
     }
 
     private void gameRestart() {
-        Button restartB = new Button("Restart");
+        Button restartB=new Button("Restart");
         restartB.setLayoutX(5);
         restartB.setLayoutY(2);
         restartB.requestFocus();
@@ -84,13 +84,13 @@ public class Game extends Pane {
     }
 
     private void spawnEnemies(int numberOfEnemies) {
-        for(int i = 0; i < numberOfEnemies; ++i) new SimpleEnemy();
-        for(int i = 0; i < numberOfEnemies/4; ++i) new Lion();
-        for(int i = 0; i < numberOfEnemies; ++i) new Eagle();
+        for (int i=0; i < numberOfEnemies; ++i) new SimpleEnemy();
+        for (int i=0; i < numberOfEnemies / 4; ++i) new Lion();
+        for (int i=0; i < numberOfEnemies; ++i) new Eagle();
     }
 
     private void spawnPowerUps(int numberOfPowerUps) {
-        for(int i = 0; i < numberOfPowerUps; ++i){
+        for (int i=0; i < numberOfPowerUps; ++i) {
             new SimplePowerUp();
             new SmallPowerUp();
             new HurryPowerUp();
@@ -98,10 +98,8 @@ public class Game extends Pane {
     }
 
 
-
-
     private void setupInputHandling() {
-        Scene scene = getScene();
+        Scene scene=getScene();
         scene.setOnKeyPressed(event -> InputHandler.getInstance().setKeyPressed(event.getCode()));
         scene.setOnKeyReleased(event -> InputHandler.getInstance().setKeyReleased(event.getCode()));
     }
