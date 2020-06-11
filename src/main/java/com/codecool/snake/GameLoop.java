@@ -57,7 +57,7 @@ public class GameLoop {
 
     private static void randomLions() {
         Random r = new Random();
-        int power = r.nextInt(600)+1;
+        int power = r.nextInt(800)+1;
         if(power==1) new Lion();
     }
 

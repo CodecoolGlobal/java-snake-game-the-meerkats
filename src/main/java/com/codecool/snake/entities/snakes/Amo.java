@@ -43,7 +43,6 @@ public class Amo extends GameEntity implements Animatable, Interactable {
     public void apply(GameEntity entity) {
         if (entity instanceof Enemy) {
             System.out.println(getMessage());
-//            Enemy.modifyEnemyCounter(-1);    // already decreased in Simple, Circle, Follow
             destroy();
         }
     }
