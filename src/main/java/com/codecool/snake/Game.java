@@ -10,6 +10,7 @@ import com.codecool.snake.entities.snakes.Amo;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
+import com.sun.javafx.geom.Vec2d;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
@@ -17,17 +18,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
 public class Game extends Pane {
-    private Snake snake=null;
-    private GameTimer gameTimer=new GameTimer();
+    private List<Snake> snakes = new ArrayList<>();
+    private GameTimer gameTimer = new GameTimer();
 
 
     public Game() {
-        Globals.getInstance().game=this;
-        Globals.getInstance().display=new Display(this);
+        Globals.getInstance().game = this;
+        Globals.getInstance().display = new Display(this);
         Globals.getInstance().setupResources();
 
         init();
@@ -40,7 +43,7 @@ public class Game extends Pane {
         spawnPowerUps(4);
         gameRestart();
 
-        GameLoop gameLoop=new GameLoop(snake);
+        GameLoop gameLoop = new GameLoop(snakes);
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
         gameTimer.play();
@@ -61,7 +64,8 @@ public class Game extends Pane {
 
     }
 
-    public void restart() {
+    public void restart(){
+        snakes.clear();
         Globals.getInstance().stopGame();
         Globals.getInstance().display.clear();
         init();
@@ -75,7 +79,9 @@ public class Game extends Pane {
     }
 
     private void spawnSnake() {
-        snake=new Snake(new Point2D(500, 500));
+        snakes.add(new Snake(new Point2D(500  , 600), 1 ));
+        snakes.add(new Snake(new Point2D(500  , 400), 2 ));
+
     }
 
 //    private  void spawnMuci(){
