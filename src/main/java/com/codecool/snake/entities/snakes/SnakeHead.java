@@ -17,6 +17,7 @@ import javafx.scene.input.KeyCode;
 public class SnakeHead extends GameEntity implements Interactable {
     private static final float turnRate = 2;
     private Snake snake;
+    int attackSpeed = 15;
 
     public SnakeHead(Snake snake, Point2D position) {
         this.snake = snake;
@@ -24,11 +25,6 @@ public class SnakeHead extends GameEntity implements Interactable {
         setPosition(position);
     }
 
-    public void attack(){
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.SPACE)){
-            new Amo(this.getPosition(),snake);
-        }
-    }
 
     public void updateRotation(SnakeControl turnDirection, float speed, int stepCounter) {
         double headRotation = getRotate();
@@ -39,9 +35,9 @@ public class SnakeHead extends GameEntity implements Interactable {
         if (turnDirection.equals(SnakeControl.TURN_RIGHT)) {
             headRotation = headRotation + turnRate;
         }
-        if (InputHandler.getInstance().isKeyPressed(KeyCode.SPACE)) {
-            if (stepCounter % 12 == 0){
-                attack();
+        if (turnDirection.equals(SnakeControl.SHOOT)) {
+            if (stepCounter % attackSpeed == 0){
+                new Amo(this.getPosition(),snake);
             }
         }
 
