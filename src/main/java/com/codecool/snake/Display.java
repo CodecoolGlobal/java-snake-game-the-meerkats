@@ -3,6 +3,7 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import java.util.List;
 
+import com.codecool.snake.entities.snakes.Snake;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -58,7 +59,6 @@ public class Display {
         gameOver.setTextFill(Color.web("#8b0000"));
         gameOver.setAlignment(Pos.CENTER);
         gameOver.relocate(0,height / 2 - 30);
-
         Label length = new Label("Your snake's length: " + snakeLength);
         length.setMinWidth(width);
         length.setFont(Font.font("Chilanka", 25));

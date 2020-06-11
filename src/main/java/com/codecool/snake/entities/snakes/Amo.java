@@ -49,6 +49,6 @@ public class Amo extends GameEntity implements Animatable, Interactable {
 
     @Override
     public String getMessage(){
-            return "woosh";
+            return "Ssssss";
     }
 }

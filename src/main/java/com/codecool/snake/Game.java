@@ -16,7 +16,9 @@ import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +26,10 @@ import java.util.Random;
 
 
 public class Game extends Pane {
+    private Snake snake=null;
+    private GameTimer gameTimer=new GameTimer();
+    private Label health;
     private List<Snake> snakes = new ArrayList<>();
-    private GameTimer gameTimer = new GameTimer();
 
 
     public Game() {
@@ -42,6 +46,7 @@ public class Game extends Pane {
 
         spawnPowerUps(4);
         gameRestart();
+        showHealth();
 
         GameLoop gameLoop = new GameLoop(snakes);
         Globals.getInstance().setGameLoop(gameLoop);
@@ -62,6 +67,18 @@ public class Game extends Pane {
             }
         });
 
+    }
+
+    public void showHealth() {
+        health = new Label("HEALTH:"+ Snake.getHealth());
+        health.setTextFill(Color.web("#8b0000"));
+        health.setLayoutX(5);
+        health.setLayoutY(30);
+        this.getChildren().add(health);
+    }
+
+    public void updateHealthLabel(){
+        health.setText("HEALTH:"+ Snake.getHealth());
     }
 
     public void restart(){
