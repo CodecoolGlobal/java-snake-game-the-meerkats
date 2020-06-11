@@ -9,6 +9,8 @@ import com.codecool.snake.entities.powerups.HurryPowerUp;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.powerups.SmallPowerUp;
 import com.codecool.snake.entities.snakes.Snake;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 
 import java.util.List;
 import java.util.Random;
@@ -16,6 +18,7 @@ import java.util.Random;
 public class GameLoop {
     private Snake snake;
     private boolean running = false;
+
 
     public GameLoop(Snake snake) { this.snake = snake; }
 
@@ -30,6 +33,7 @@ public class GameLoop {
     public void step() {
         if(running) {
             snake.step();
+
             for (GameEntity gameObject : Globals.getInstance().display.getObjectList()) {
                 if (gameObject instanceof Animatable) {
                     ((Animatable) gameObject).step();
@@ -40,6 +44,7 @@ public class GameLoop {
 
         Globals.getInstance().display.frameFinished();
     }
+
 
     private static void randomSpawnPowerUps(){
         Random r = new Random();
