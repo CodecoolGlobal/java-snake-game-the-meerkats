@@ -28,7 +28,8 @@ import java.util.Random;
 public class Game extends Pane {
     private Snake snake=null;
     private GameTimer gameTimer=new GameTimer();
-    private Label health;
+    protected Label health;
+    protected Label health2;
     private List<Snake> snakes = new ArrayList<>();
 
 
@@ -46,7 +47,9 @@ public class Game extends Pane {
 
         spawnPowerUps(4);
         gameRestart();
-        showHealth();
+        showHealth( 5, 30);
+//        snakes.get(0).setHealth(100);
+//        snakes.get(1).setHealth(100);
 
         GameLoop gameLoop = new GameLoop(snakes);
         Globals.getInstance().setGameLoop(gameLoop);
@@ -69,16 +72,24 @@ public class Game extends Pane {
 
     }
 
-    public void showHealth() {
-        health = new Label("HEALTH:"+ Snake.getHealth());
+    public void showHealth(int healthX, int healthY) {
+
+        health = new Label("HEALTH:"+ snakes.get(0).getHealth());
         health.setTextFill(Color.web("#8b0000"));
-        health.setLayoutX(5);
-        health.setLayoutY(30);
+        health.setLayoutX(healthX);
+        health.setLayoutY(healthY);
         this.getChildren().add(health);
+
+        health2 = new Label("HEALTH2:"+ snakes.get(1).getHealth());
+        health2.setTextFill(Color.web("#8b0000"));
+        health2.setLayoutX(5);
+        health2.setLayoutY(50);
+        this.getChildren().add(health2);
     }
 
     public void updateHealthLabel(){
-        health.setText("HEALTH:"+ Snake.getHealth());
+        health.setText("HEALTH:"+ snakes.get(0).getHealth());
+        health2.setText("HEALTH2:"+ snakes.get(1).getHealth());
     }
 
     public void restart(){

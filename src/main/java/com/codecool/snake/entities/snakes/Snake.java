@@ -13,9 +13,9 @@ import javafx.scene.input.KeyCode;
 
 public class Snake implements Animatable {
 
-    private static float speed = 2;
+    private float speed = 2;
     private int stepCounter=0;
-    private static int health = 100;
+    private int health = 100;
 
 
     private int snakeNo;
@@ -53,8 +53,12 @@ public class Snake implements Animatable {
 
     }
 
-    public static float getSpeed() {
+    public float getSpeed() {
         return speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed=speed;
     }
 
     public void moveFaster(float speed){
@@ -83,18 +87,22 @@ public class Snake implements Animatable {
         Point2D position = parent.getPosition();
 
         for (int i = 0; i < numParts; i++) {
-            SnakeBody newBodyPart = new SnakeBody(position);
+            SnakeBody newBodyPart = new SnakeBody(this, position);
             body.add(newBodyPart);
         }
         Globals.getInstance().display.updateSnakeHeadDrawPosition(head);
     }
 
-    public static void changeHealth(int diff) {
+    public void changeHealth(int diff) {
         health -= diff;
     }
 
-    public static int getHealth(){
+    public int getHealth(){
         return health;
+    }
+
+    public void setHealth(int health) {
+        this.health=health;
     }
 
     public boolean checkForGameOverConditions(int anotherSnakelenght) {
