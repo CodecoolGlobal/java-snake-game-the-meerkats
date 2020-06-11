@@ -15,8 +15,7 @@ public class Snake implements Animatable {
     private static float speed = 2;
     private static int health = 100;
     private int snakeNo;
-
-
+    private int stepCounter=0;
 
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
@@ -30,14 +29,22 @@ public class Snake implements Animatable {
         addPart(4);
     }
 
+
+    public SnakeHead getHead(){
+        return head;
+    }
+
+
     public void step() {
         SnakeControl turnDir = getUserInput();
-        head.updateRotation(turnDir, getSpeed());
+        head.updateRotation(turnDir, getSpeed(),stepCounter);
+
 
         updateSnakeBodyHistory();
         checkForGameOverConditions();
 
         body.doPendingModifications();
+        stepCounter++;
     }
 
     public static float getSpeed() {
@@ -61,6 +68,7 @@ public class Snake implements Animatable {
         return turnDir;
 
     }
+
 
     public void addPart(int numParts) {
         GameEntity parent = getLastPart();
