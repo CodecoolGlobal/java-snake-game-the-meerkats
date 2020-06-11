@@ -48,7 +48,7 @@ public class Display {
         displayPane.getChildren().clear();
         gameObjects.clear();
     }
-    public void showGameOverScreen(int snakeLength) {
+    public void showGameOverScreen(int snakeLength, int secondSnakeLength) {
         double width = Globals.WINDOW_WIDTH;
         double height = Globals.WINDOW_HEIGHT;
 
@@ -65,12 +65,20 @@ public class Display {
         length.setAlignment(Pos.CENTER);
         length.relocate(0, height / 2 + 30);
 
+        Label length2 = new Label("Your second snake's length: " + secondSnakeLength);
+        length2.setMinWidth(width);
+        length2.setFont(Font.font("Chilanka", 25));
+        length2.setAlignment(Pos.CENTER);
+        length2.relocate(0, height / 2 + 80);
+
         //restart button for game over
         Button restart = new Button("Restart");
+        restart.setLayoutX(0);
+        restart.setLayoutY (height/2 + 130);
         getRestartButton(restart);
 
         clear();
-        displayPane.getChildren().addAll(gameOver, length, restart);
+        displayPane.getChildren().addAll(gameOver, length, length2, restart);
     }
 
     public void getRestartButton(Button restart){

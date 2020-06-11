@@ -29,6 +29,8 @@ public class GameLoop {
 
     public void step() {
         if(running) {
+            snakes.get(0).checkForGameOverConditions(snakes.get(1).getBodySize());
+            snakes.get(1).checkForGameOverConditions(snakes.get(0).getBodySize());
             for(Snake snake : snakes) {
                 snake.step();
             }
